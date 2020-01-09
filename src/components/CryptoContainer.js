@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, RefreshControl } from 'react-native'
 import Spinner from 'react-native-loading-spinner-overlay'
 
 import FetchCoinData from './../Actions/FetchCoinData'
@@ -44,6 +44,9 @@ class CryptoContainer extends Component {
     }
     return(
       <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={crypto.isFetching} onRefresh={this.props.FetchCoinData.bind(this)} />
+        }
       contentContainerStyle={contentContainer}
       >
         {this.renderCoinCards()}
